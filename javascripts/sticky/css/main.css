@@ -35,7 +35,8 @@ ul li {
 }
 
 .row {
-  max-width: 1280px;
+  /*max-width: 1280px;*/
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -338,8 +339,21 @@ footer {
   }
 }
 
+.header{
+  background-color: white;
+  transition: 5s;
+}
 
+.is-sticky .header{
+  width: 100%;
+  background-color: black;
+}
 
+.is-sticky .work{
+  background-color: white;
+  padding: 12px 0;
+  margin: 0;
+}
 
 
 
