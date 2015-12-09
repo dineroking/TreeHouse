@@ -60,8 +60,12 @@ var editTask = function() {
 //Delete an existing task
 var deleteTask = function() {
   console.log('delete task...');
-  //When delete button is pressed
     //Remove the parent list item from the ul
+  var listItem = this.parentNode;
+  var ul = listItem.parentNode;
+
+  //remove the parent list item from the ul
+  ul.removeChild(listItem);
 };
 
 
@@ -69,16 +73,19 @@ var deleteTask = function() {
 var taskCompleted = function() {
   console.log('complete task...');
     //Append the task list item to the #completed-tasks
-  this.parentNode
-  completedTaskHolder.appendChild()
+  var listItem = this.parentNode;
+  completedTaskHolder.appendChild(listItem);
+  bindTaskEvents(listItem, taskIncomplete);
 };
 
 
 //Mark a task as incomplete
 var taskIncomplete = function() {
   console.log('incomplete task...');
-  //When the checkbox is unchecked
-    //Append the tast list item to the #incompleted-tasks
+    //Append the last list item to the #incompleted-tasks
+  var listItem = this.parentNode;
+  incompleteTaskHolder.appendChild(listItem);
+  bindTaskEvents(listItem, taskCompleted);
 };
 
 var bindTaskEvents = function(taskListItem, checkboxEventHandler){
