@@ -20,7 +20,18 @@ var createNewTaskElement = function(taskString){
   var editButton = document.createElement('button');
     //button with class of delete (button.delete)
   var deleteButton = document.createElement('button');
+
     //each element needs modifying
+  checkbox.type = 'checkbox';
+  editInput.type = 'text';
+
+  editButton.innerText = 'Edit';
+  editButton.className = 'edit';
+
+  deleteButton.innerText = 'Delete';
+  deleteButton.className = 'delete';
+
+  label.innerText = taskString;
 
     //each element needs appending
   listItem.appendChild(checkbox);
@@ -34,10 +45,13 @@ var createNewTaskElement = function(taskString){
 var addTask = function() {
   console.log('add task...');
     //Create a new list item with the text from the #new-task
-  var listItem = createNewTaskElement('some string');
+  var listItem = createNewTaskElement(taskInput.value);
 
   //append listItem to incompleteTaskHolder
   incompleteTaskHolder.appendChild(listItem);
+  bindTaskEvents(listItem, taskCompleted);
+
+  taskInput.value = '';
 
 };
 
@@ -45,15 +59,26 @@ var addTask = function() {
 //Edit an existing task
 var editTask = function() {
   console.log('edit task...');
-  //When the edit button is pressed
+
+  var listItem = this.parentNode;
+  var editInput = listItem.querySelector('input[type=text]');
+  var label = listItem.querySelector('label');
+
+  var containsClass = listItem.classList.contains('editMode');
     //if the class of the parent is .editMode
-      //switch from .editMode
-      //label text becomes the inputs value
-    //else
-      //switch to .editMode
-      //input value becomes the label's text
+  if(containsClass){
+    //switch from .editMode
+    //label text becomes the inputs value
+    label.innerText = editInput.value;
+  }else{
+    //switch to .editMode
+    //input value becomes the label's text
+    editInput.value = label.innerText;
+  }
+
 
     //Toggle .editMode on the parent
+  listItem.classList.toggle('editMode');
 };
 
 
@@ -105,9 +130,14 @@ var bindTaskEvents = function(taskListItem, checkboxEventHandler){
   checkBox.onchange = checkboxEventHandler;
 };
 
+var ajaxRequest = function(){
+  console.log('AJAX request sent');
+};
 
 //set the click handler to the addTask function
-addButton.onclick = addTask; //cant use parenthesis because that would be considered a call and would execute immediately
+//addButton.onclick = addTask; //cant use parenthesis because that would be considered a call and would execute immediately
+addButton.addEventListener('click', addTask);
+addButton.addEventListener('click', ajaxRequest);
 
 //cycle over the incompleteTaskHolder ul list item
 //for each list item
