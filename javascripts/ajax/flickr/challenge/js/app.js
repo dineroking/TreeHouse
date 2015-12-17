@@ -47,7 +47,7 @@ $(document).ready(function(){
       //Ajax call
       //store url
       var flickrAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-      //create flickrOptions object
+      //create flickrOptions objects
       var flickrOptions = {
         tags : $userInput,
         format : 'json'
