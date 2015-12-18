@@ -1,10 +1,12 @@
 var playlist = new Playlist();
 
+var starWars = new Movie('Star Wars', 2015, '2:15:45');
 var oneMansDream = new Song('One Mans Dream', 'Yanni', '4:01');
 var hello = new Song('Hello', 'Adele', '3:56');
 
 playlist.add(oneMansDream);
 playlist.add(hello);
+playlist.add(starWars);
 
 var playListElement = document.getElementById('playlist');
 
